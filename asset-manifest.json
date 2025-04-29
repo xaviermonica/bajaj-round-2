@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/bajaj-round-2/static/css/main.20620c13.css",
+    "main.js": "/bajaj-round-2/static/js/main.38c73e46.js",
+    "static/js/453.cb75bd12.chunk.js": "/bajaj-round-2/static/js/453.cb75bd12.chunk.js",
+    "index.html": "/bajaj-round-2/index.html",
+    "main.20620c13.css.map": "/bajaj-round-2/static/css/main.20620c13.css.map",
+    "main.38c73e46.js.map": "/bajaj-round-2/static/js/main.38c73e46.js.map",
+    "453.cb75bd12.chunk.js.map": "/bajaj-round-2/static/js/453.cb75bd12.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.20620c13.css",
+    "static/js/main.38c73e46.js"
+  ]
+}
