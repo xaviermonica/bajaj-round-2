@@ -1,46 +1,139 @@
-# Getting Started with Create React App
+# Dynamic Form Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based dynamic form application that allows students to log in, fetch a dynamic form structure from an API, and fill it out section by section. The form is rendered and validated based on metadata received from the backend.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+- **User Login**: Students log in using their roll number and name.
+- **Dynamic Form Rendering**: Form structure is fetched from an API and rendered on the fly.
+- **Section-Based Navigation**: Navigate between sections with "Previous" and "Next" buttons.
+- **Dynamic Validation**: Fields are validated based on metadata (e.g., required, min/max length).
+- **Final Submission**: All collected form data is logged to the console on final submit.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 📡 API Endpoints
 
-### `npm test`
+### 1. User Registration
+- **Endpoint**: `POST /create-user`
+- **Description**: Registers a new user.
+- **Payload**:
+  ```json
+  {
+    "rollNumber": "your_roll_number",
+    "name": "your_name"
+  }
+  ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. Fetch Form
+- **Endpoint**: `GET /get-form?rollNumber=your_roll_number`
+- **Description**: Fetches the dynamic form structure for the user.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🧾 Form Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```ts
+interface FormResponse {
+  message: string;
+  form: {
+    formTitle: string;
+    formId: string;
+    version: string;
+    sections: FormSection[];
+  };
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+interface FormSection {
+  sectionId: number;
+  title: string;
+  description: string;
+  fields: FormField[];
+}
 
-### `npm run eject`
+interface FormField {
+  fieldId: string;
+  type: "text" | "tel" | "email" | "textarea" | "date" | "dropdown" | "radio" | "checkbox";
+  label: string;
+  placeholder?: string;
+  required: boolean;
+  dataTestId: string;
+  validation?: {
+    message: string;
+  };
+  options?: Array<{
+    value: string;
+    label: string;
+    dataTestId?: string;
+  }>;
+  maxLength?: number;
+  minLength?: number;
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📁 Project Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+src/
+├── components/
+│   ├── LoginForm.tsx         # Handles user login
+│   ├── DynamicForm.tsx       # Renders the dynamic form
+│   ├── FormSection.tsx       # Renders individual form sections
+│   ├── FormField.tsx         # Renders individual form fields
+├── services/
+│   ├── api.ts                # API service layer
+├── types/
+│   ├── index.ts              # TypeScript type definitions
+├── App.tsx                   # Main application component
+├── index.tsx                 # React entry point
+├── index.css                 # Global styles
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+## ⚙️ Installation and Setup
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/xaviermonica/bajaj-round-2.git
+   cd bajaj-round-2
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm start
+   ```
+
+4. Open the app in your browser:
+   ```
+   http://localhost:3000
+   ```
+
+---
+
+## 📜 Scripts
+
+- **Start Development Server**: `npm start`
+- **Run Tests**: `npm test`
+- **Build for Production**: `npm run build`
+
+---
+
+## 🛠️ Technologies Used
+
+- **React**: Frontend library
+- **TypeScript**: Type safety
+- **Axios**: API integration
+- **Jest**: Unit testing
+- **CSS**: Styling
+
+---
